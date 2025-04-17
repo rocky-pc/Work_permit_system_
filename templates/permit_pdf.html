@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Work Permit Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            color: #333;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #1a5f7a;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .company-logo {
+            max-width: 150px;
+            margin-bottom: 15px;
+        }
+        .document-title {
+            color: #1a5f7a;
+            font-size: 24px;
+            margin: 0;
+            text-transform: uppercase;
+        }
+        .permit-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .info-item {
+            margin-bottom: 15px;
+        }
+        .label {
+            font-weight: bold;
+            color: #1a5f7a;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .value {
+            padding: 8px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            font-size: 12px;
+            color: #666;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: white;
+            background: {% if permit.status == 'Approved' %}#28a745{% elif permit.status == 'Rejected' %}#dc3545{% else %}#ffc107{% endif %};
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Company Logo" class="company-logo">
+        <h1 class="document-title">Work Permit Certificate</h1>
+        <p>Reference Number: WP-{{ permit.id }}</p>
+    </div>
+
+    <div class="permit-info">
+        <div class="info-grid">
+            <div class="info-item">
+                <span class="label">Permit Type</span>
+                <div class="value">{{ permit.permit_type }}</div>
+            </div>
+            <div class="info-item">
+                <span class="label">Location</span>
+                <div class="value">{{ permit.location }}</div>
+            </div>
+            <div class="info-item">
+                <span class="label">Status</span>
+                <div class="status-badge">{{ permit.status }}</div>
+            </div>
+            <div class="info-item">
+                <span class="label">Issue Date</span>
+                <div class="value">{{ permit.issued_at.strftime('%d %B %Y, %H:%M') }}</div>
+            </div>
+            <div class="info-item">
+                <span class="label">Expiry Date</span>
+                <div class="value">{{ permit.expires_at.strftime('%d %B %Y, %H:%M') }}</div>
+            </div>
+        </div>
+
+        <div class="info-item" style="margin-top: 20px;">
+            <span class="label">Description</span>
+            <div class="value" style="white-space: pre-wrap;">{{ permit.description }}</div>
+        </div>
+    </div>
+
+    <div class="signatures" style="margin-top: 40px;">
+        <div class="info-grid">
+            <div class="signature-box">
+                <div style="border-top: 1px solid #333; margin-top: 50px; width: 200px;">
+                    <p style="margin-top: 5px;">Authorized Signature</p>
+                </div>
+            </div>
+            <div class="signature-box">
+                <div style="border-top: 1px solid #333; margin-top: 50px; width: 200px;">
+                    <p style="margin-top: 5px;">Recipient Signature</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>This document is electronically generated and valid without signature. Please verify authenticity using the reference number.</p>
+        <p>Generated on: {{ permit.issued_at.strftime('%d %B %Y, %H:%M') }}</p>
+    </div>
+</body>
+</html>

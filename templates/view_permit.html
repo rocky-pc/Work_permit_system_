@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permit Detail</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        .permit-card {
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+        }
+        .status-badge {
+            font-size: 1rem;
+            padding: 8px 15px;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container mt-4">
+        <div class="permit-card bg-white">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="text-primary">Permit Details</h2>
+                <span class="status-badge badge {% if permit.status == 'Approved' %}bg-success{% elif permit.status == 'Rejected' %}bg-danger{% else %}bg-warning{% endif %}">
+                    {{ permit.status }}
+                </span>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="fw-bold">Permit Type:</label>
+                        <p class="lead">{{ permit.permit_type }}</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="fw-bold">Description:</label>
+                        <p class="lead">{{ permit.description }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex gap-2">
+                <a href="{{ url_for('approve_permit', permit_id=permit.id) }}" 
+                   class="btn btn-success {% if permit.status == 'Approved' %}disabled{% endif %}">
+                    <i class="bi bi-check-circle"></i> Approve
+                </a>
+                <a href="{{ url_for('reject_permit', permit_id=permit.id) }}" 
+                   class="btn btn-danger {% if permit.status == 'Rejected' %}disabled{% endif %}">
+                    <i class="bi bi-x-circle"></i> Reject
+                </a>
+                <a href="{{ url_for('generate_pdf', permit_id=permit.id) }}" 
+                   class="btn btn-primary">
+                    <i class="bi bi-file-pdf"></i> Download PDF
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

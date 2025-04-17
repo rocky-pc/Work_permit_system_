@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Permit | Work Permit System</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        .permit-form {
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            padding: 30px;
+            background: white;
+        }
+        .form-floating {
+            margin-bottom: 1.5rem;
+        }
+        .page-header {
+            background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+        .btn-submit {
+            padding: 12px 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="page-header">
+        <div class="container">
+            <h1 class="display-4">Create New Permit</h1>
+            <p class="lead">Fill in the details below to generate a new work permit</p>
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="permit-form">
+                    <form method="POST" class="needs-validation" novalidate>
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="permit_type" name="permit_type" required>
+                            <label for="permit_type">Permit Type</label>
+                            <div class="invalid-feedback">Please specify the permit type.</div>
+                        </div>
+
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="location" name="location" required>
+                            <label for="location">Location</label>
+                            <div class="invalid-feedback">Please enter the location.</div>
+                        </div>
+
+                        <div class="form-floating">
+                            <textarea class="form-control" id="description" name="description" style="height: 100px" required></textarea>
+                            <label for="description">Description</label>
+                            <div class="invalid-feedback">Please provide a description.</div>
+                        </div>
+
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="receiver_id" name="receiver_id" required>
+                            <label for="receiver_id">Receiver ID</label>
+                            <div class="invalid-feedback">Please enter the receiver ID.</div>
+                        </div>
+
+                        <div class="form-floating mb-4">
+                            <input type="text" class="form-control" id="jsa_reference" name="jsa_reference" required>
+                            <label for="jsa_reference">JSA Reference</label>
+                            <div class="invalid-feedback">Please enter the JSA reference.</div>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-submit">
+                                <i class="bi bi-plus-circle me-2"></i>Create Permit
+                            </button>
+                            <button type="reset" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-counterclockwise me-2"></i>Reset Form
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Form Validation Script -->
+    <script>
+        (() => {
+            'use strict'
+            const forms = document.querySelectorAll('.needs-validation')
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+</body>
+</html>

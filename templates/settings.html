@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permit Settings | IWPM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .permit-card {
+            border-left: 5px solid;
+            margin-bottom: 20px;
+        }
+        .permit-card.PINK { border-color: #ff69b4; }
+        .permit-card.BLUE { border-color: #0d6efd; }
+        .permit-card.GREEN { border-color: #198754; }
+        .permit-card.YELLOW { border-color: #ffc107; }
+        .permit-card.GREY { border-color: #6c757d; }
+        .permit-card.ORANGE { border-color: #fd7e14; }
+        .permit-card.WHITE { border-color: #000000; }
+    </style>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('dashboard') }}">IWPM Settings</a>
+            <div>
+                <a href="{{ url_for('dashboard') }}" class="btn btn-outline-light">Back to Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Permit Type Settings</h2>
+            <a href="{{ url_for('initialize_settings') }}" class="btn btn-success">Initialize Default Settings</a>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endwith %}
+
+        <div class="row">
+            {% for setting in permit_types %}
+            <div class="col-md-6">
+                <div class="card permit-card {{ setting.color_code }}">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="card-title">{{ setting.permit_type }}</h5>
+                            <span class="badge bg-secondary">{{ setting.form_number }}</span>
+                        </div>
+                        <p><strong>Description:</strong> {{ setting.description }}</p>
+                        <p><strong>Examples:</strong> {{ setting.examples }}</p>
+                        <p><strong>Requirements:</strong> {{ setting.requirements }}</p>
+                        <div class="text-end">
+                            <a href="{{ url_for('edit_setting', setting_id=setting.id) }}" 
+                               class="btn btn-primary btn-sm">
+                                Edit Settings
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
