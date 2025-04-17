@@ -1,1 +1,6 @@
-# Work_permit_system_
+# Work_permit_system_![Screenshot 2025-04-17 143616](https://github.com/user-attachments/assets/038de5f7-799d-496e-95ad-5f5d64b02ad4)
+![Screenshot 2025-04-17 143628](https://github.com/user-attachments/assets/06942152-eb1b-4cdd-9bd4-dac921b4c05e)
+![Screenshot 2025-04-17 143708](https://github.com/user-attachments/assets/539815f7-99e2-4fa1-bfda-9411b78b0d96)
+![Screenshot 2025-04-17 143744](https://github.com/user-attachments/assets/eec4d4f0-353e-42e9-948a-7f786eca3296)
+![Screenshot 2025-04-17 143754](https://github.com/user-attachments/assets/be8b8c74-e034-41ff-978b-6f2a72711be3)
+![Screenshot 2025-04-17 143808](https://github.com/user-attachments/assets/94373a01-9c95-45cb-ad34-dd6138dae571)
